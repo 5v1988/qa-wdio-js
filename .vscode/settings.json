@@ -1,0 +1,6 @@
+{
+    "cucumberautocomplete.steps": [
+        "src/glue/**/*.js"
+    ],
+    "cucumberautocomplete.strictGherkinCompletion": true
+}
