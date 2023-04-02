@@ -1,8 +1,7 @@
 import BasePage from '../pages/base.page.js';
+import { SuccessMessage } from '../pages/base.page.js';
 
 class CreateNewAccount extends BasePage{
-
-    successMsg = 'Thank you for registering with Main Website Store.';
 
     get firstName() {
         return $('#firstname');
@@ -54,15 +53,14 @@ class CreateNewAccount extends BasePage{
         await this.createAnAccountBtn.click();
         await browser.waitUntil(async () => {
             return (await this.getSuccessMessage())
-                .includes(this.successMsg);
+                .includes(SuccessMessage.AccountCreation);
         }, {
             timeout: 5000,
             timeoutMsg: 'Success message has not displayed!'
         })
         let alertMessage = await this.alert.getText();
-        console.log(alertMessage)
         expect(alertMessage)
-            .toEqual(this.successMsg);
+            .toEqual(SuccessMessage.AccountCreation);
     }
 
 }

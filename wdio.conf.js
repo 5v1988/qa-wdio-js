@@ -44,7 +44,11 @@ export const config = {
     //
     // Whether or not retried specfiles should be retried immediately or deferred to the end of the queue
     // specFileRetriesDeferred: false,
-    reporters: [['allure', {outputDir: 'allure-results'}]],
+    reporters: [['allure', {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false
+    }]],
 
     //
     // If you are using Cucumber you need to specify the location of your step definitions.
@@ -66,13 +70,13 @@ export const config = {
         // <boolean> fail if there are any undefined or pending steps
         strict: false,
         // <string> (expression) only execute the features or scenarios with tags matching the expression
-        tagExpression: '@Search',
+        tagExpression: '@Search or @NewAccount',
         // <number> timeout for step definitions
         timeout: 60000,
         // <boolean> Enable this config to treat undefined definitions as warnings.
         ignoreUndefinedDefinitions: false
     },
-    
+
     //
     // =====
     // Hooks
@@ -132,9 +136,9 @@ export const config = {
      * @param {String} commandName hook command name
      * @param {Array} args arguments that command would receive
      */
-     //beforeCommand: function (commandName, args) {
-     //   console.log(addValue, args);
-     //},
+    //beforeCommand: function (commandName, args) {
+    //   console.log(addValue, args);
+    //},
 
     /**
      * Cucumber Hooks
@@ -174,7 +178,9 @@ export const config = {
      * @param {number}             result.duration  duration of scenario in milliseconds
      * @param {Object}             context          Cucumber World object
      */
-    afterStep: function (step, scenario, result, context) {
+    afterStep: async function (step, scenario, result, context) {
+        if (!result.passed)
+            await browser.takeScreenshot();
         console.log('Finishing Step : ', step.text);
     },
     /**
@@ -199,7 +205,7 @@ export const config = {
      */
     // afterFeature: function (uri, feature) {
     // },
-    
+
     /**
      * Runs after a WebdriverIO command gets executed
      * @param {String} commandName hook command name

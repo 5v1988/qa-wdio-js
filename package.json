@@ -12,10 +12,8 @@
   "scripts": {
     "wdio": "wdio run ./wdio.conf.js"
   },
-
   "dependencies": {
-    "webdriverio": "^8.6.8",
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "webdriverio": "^8.6.8"
   }
-
 }

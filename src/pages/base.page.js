@@ -13,3 +13,7 @@ export default class Page{
         await browser.url(baseUrl);
     }
 }
+
+export const SuccessMessage = {
+    AccountCreation : 'Thank you for registering with Main Website Store.',
+}
