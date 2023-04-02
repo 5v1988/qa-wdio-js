@@ -9,4 +9,3 @@
     - It can generate test reports (allure), providing detailed outcomes about the test runs, including screenshots on failures
 
 ## How to do it:
-
