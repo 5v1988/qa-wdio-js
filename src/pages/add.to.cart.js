@@ -26,11 +26,11 @@ class AddToCart {
             let count = parseInt(await this.cartCounter.getText());
             return (count > 0);
         });
-        browser.pause(5000);
     }
 
     async proceedCheckout() {
         await this.cartCounter.waitForClickable();
+        browser.pause(3000);
         await this.cartCounter.click();
         await browser.waitUntil( async () => {
            return await this.proceedToCheckout.isDisplayed();
