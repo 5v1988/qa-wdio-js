@@ -1,7 +1,15 @@
 #!/bin/bash
-### Removing previously generated allure reports
-rm -rf ./allure-*
-npm install .
-npm run test
-### Generate and launch reports once tests are done
-allure generate --clean allure-results && allure open
+
+## Set either 'docker' or 'local'
+environment="docker"
+
+if [[ "$environment" == "docker" ]]; then
+    docker build --tag qa-wdio-js .
+    docker run -p 60606:60606 -it -v /dev/shm:/dev/shm qa-wdio-js
+else
+    rm -rf ./allure-*
+    npm install .
+    npm install -g allure-commandline
+    npm run test
+    allure generate --clean allure-results && allure open -h localhost -p 60606
+fi

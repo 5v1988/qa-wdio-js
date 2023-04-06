@@ -11,7 +11,16 @@ export const config = {
     capabilities: [{
         maxInstances: 1,
         browserName: 'chrome',
-        acceptInsecureCerts: true
+        acceptInsecureCerts: true,
+        'goog:chromeOptions': {
+            args: [
+                '--no-sandbox',
+                '--disable-infobars',
+                '--headless',
+                '--disable-gpu',
+                '--window-size=1440,735'
+            ],
+        }
     }],
     logLevel: 'info',
     // If you only want to run your tests until a specific amount of tests have failed use
@@ -48,7 +57,8 @@ export const config = {
         outputDir: 'allure-results',
         disableWebdriverStepsReporting: true,
         disableWebdriverScreenshotsReporting: false
-    }]],
+        }]
+    ],
 
     //
     // If you are using Cucumber you need to specify the location of your step definitions.
