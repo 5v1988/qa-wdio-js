@@ -1,11 +1,10 @@
 import { Given, When } from '@wdio/cucumber-framework';
-import { randomNumber } from '../utils/support.js';
-import data from '../utils/td.js';
+import { readTestConfig, randomNumber } from '../utils/common.support.js';
 import HomePage from '../pages/home.js'
 import CreateNewAccount from '../pages/create.new.account.js'
 
 Given(/^User opens home page$/, async () => {
-    let url = await data('url');
+    let url = await readTestConfig('url');
     await HomePage.openBasePage(url)
 });
 
