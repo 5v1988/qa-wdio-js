@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Set either 'docker' or 'local'
+## 'docker' or 'local'
 environment="docker"
 
 if [[ "$environment" == "docker" ]]; then
