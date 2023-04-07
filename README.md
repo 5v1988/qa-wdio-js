@@ -64,23 +64,22 @@
         └── wdio.conf.js
 
 ## What to do:
+
     - For Mac or Linux distributions, you can run scripts using the script like this:  ./init.sh
 
     - In case of Windows, you shall run these commands on cmd or create a batch using these commands
 
-    ```bash
         rd /s /q allure-report
         rd /s /q allure-results
         npm install .
         npm install -g allure-commandline
         npm run test
         allure generate --clean allure-results && allure open -h localhost -p 60606
-    ```
 
     - After tests are done, allure will be launched in default browser, and for docker container, you
     can check the reports manually at http://localhost:60606
 
 ## What's next:
 
-    - This is a standard boilplate framework and is evolving, however if you think to add any feature,
-    please do so and create a pull request to this repository.
+    - This is a standard boilplate framework and is evolving, however if you think to add any feature
+    ,please do so and create a pull request to this repository.

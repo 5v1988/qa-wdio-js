@@ -18,6 +18,3 @@ RUN npm install -g allure-commandline
 RUN npm install
 
 ENTRYPOINT npm run test && allure generate --clean allure-results && allure open  -p 60606
-
-#CMD [ "allure", "generate", "--clean", "allure-results", "&&", "allure", "open","-h","localhost","-p", "60606" ]
-
