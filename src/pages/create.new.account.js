@@ -27,10 +27,6 @@ class CreateNewAccount extends BasePage{
         return $('#password-confirmation');
     }
 
-    get createAnAccountBtn() {
-        return $("//button[.//span[text()='Create an Account']]");
-    }
-
     enterPersonalInfo = async (firstName, lastName) => {
         await this.firstName.addValue(firstName);
         await this.lastName.addValue(lastName);
@@ -50,7 +46,8 @@ class CreateNewAccount extends BasePage{
     }
 
     createAnAccount = async () => {
-        await this.createAnAccountBtn.click();
+        let createAnAccountBtn = await browser.findLinkByText('Create an Account');
+        await createAnAccountBtn.click();
         await browser.waitUntil(async () => {
             return (await this.getSuccessMessage())
                 .includes(SuccessMessage.AccountCreation);

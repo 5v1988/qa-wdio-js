@@ -1,3 +1,5 @@
+import UiCommands from './src/utils/ui.custom.commands.js'
+
 export const config = {
     runner: 'local',
     specs: [
@@ -139,8 +141,13 @@ export const config = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {Object}         browser      instance of created browser/device session
      */
-    // before: function (capabilities, specs) {
-    // },
+
+    before: function (capabilities, specs) {
+        Object.keys(UiCommands).forEach((commandName) => {
+            browser.addCommand(commandName, UiCommands[commandName], false);
+        });
+    },
+
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {String} commandName hook command name

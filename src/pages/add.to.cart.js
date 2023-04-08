@@ -12,16 +12,13 @@ class AddToCart {
         return $('a.showcart span.counter');
     }
 
-    get proceedToCheckout() {
-        return $("//button[normalize-space()='Proceed to Checkout']");
-    }
-
     get viewAndEditCart() {
         return $("//a[.//span[text()='View and Edit Cart']]");
     }
 
     async addProductToCart() {
-        await this.addToCart.click();
+        let addToCartBtn = await browser.findButtonByName('Add to Cart');
+        await addToCartBtn.click();
         await browser.waitUntil(async () => {
             let count = parseInt(await this.cartCounter.getText());
             return (count > 0);
@@ -32,11 +29,8 @@ class AddToCart {
         await this.cartCounter.waitForClickable();
         browser.pause(3000);
         await this.cartCounter.click();
-        await browser.waitUntil( async () => {
-           return await this.proceedToCheckout.isDisplayed();
-        });
-        await this.proceedToCheckout.waitForClickable();
-        await this.proceedToCheckout.click();
+        let proceedToCheckoutBtn = await browser.findButtonByName('Proceed to Checkout');
+        await proceedToCheckoutBtn.click();
     }
 
 }
